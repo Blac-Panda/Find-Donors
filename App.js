@@ -23,19 +23,19 @@ export default class App extends React.Component {
   }
 
   renderHeader() {
+    const { user } = this.props;
     return (
       <Block flex={0.36} column style={{paddingHorizontal: 15,}}>
         <Block flex={false} row style={{paddingVertical: 15,}}>
           <Block center>
             <Text h3 bold white>Blood Requests</Text>           
           </Block>
-
-          {/* <Image style={styles.avatar} source={}/> */}
+          <Image style={styles.avatar} source={user.avatar}/>
         </Block>
         <Block card shadow color="white" style={styles.headerChart}>
           <Block row space="between" style={{paddingHorizontal: 30}}>
             <Block row center flex={false}>
-              <Text h1>291 </Text>
+              <Text h1>291</Text>
               <Text caption bold tertiary style={{paddingHorizontal: 10}}>
                 -12%
               </Text>
@@ -44,7 +44,7 @@ export default class App extends React.Component {
               <Text caption bold primary style={{paddingHorizontal: 10}}>
                 +49%
               </Text>
-              <Text h1> 481</Text>
+              <Text h1>481</Text>
             </Block>
           </Block>
           <Block flex={0.5} center row space="between" style={{paddingHorizontal: 30}}>
@@ -61,8 +61,21 @@ export default class App extends React.Component {
 
   renderRequest(request){
     return(
-      <Block card shadow color="white">
-        <Text>{request.name}</Text>
+      <Block row card shadow color="white" style={styles.request}>
+        <Block flex={0.25} card column color="secondary" style={styles.requestStatus}>
+          <Block flex={0.25} middle center color={theme.colors.primary}>
+            <Text small color="white" style={{textTransform: 'uppercase'}} >{request.status}</Text>
+          </Block>
+          <Block flex={0.7} center middle>
+            <Text h2 white>{request.bloodType}</Text> 
+          </Block>
+        </Block>
+        <Block flex={0.75} column middle>
+          <Text bold h3 style={{paddingVertical: 8}}>{request.name}</Text>
+          <Text caption semibold>
+            {request.age} * {request.gender} * {request.distance}km * {request.duration}hrs
+          </Text>
+        </Block>
       </Block>
     );
   }
@@ -71,13 +84,15 @@ export default class App extends React.Component {
     const { requests } = this.props;
     return (
       <Block flex={0.8} column color="gray" style={styles.requests}>
-        <Block flex={false} row space="between"> 
-          <Text light>Recent Updates</Text>
-          <Text bold>View All</Text>
+        <Block flex={false} row space="between" style={styles.requestHeader}>
+        <Text light>Recent Updates</Text>
+          <TouchableOpacity activeOpacity={0.8}> 
+            <Text semibold>View All</Text>
+          </TouchableOpacity>
         </Block>
         <ScrollView>
           { requests.map(request => (
-            <TouchableOpacity key={`request-${request.id}`}>
+            <TouchableOpacity activeOpacity={0.8} key={`request-${request.id}`}>
               {this.renderRequest(request)}
             </TouchableOpacity>
             ))}
@@ -96,17 +111,36 @@ App.defaultProps = {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: theme.colors.accent,
+    backgroundColor: theme.colors.primary,
   },
   headerChart: {
     paddingTop: 30,
-    // paddingBottom: 45,
+    paddingBottom: 45, 
     zIndex: 1,
   },
+  avatar: {
+    width: 25,
+    height: 25,
+    borderRadius: 25/2,
+    marginRight: 10,
+  },
   requests: {
-    marginTop: -40,
+    marginTop: -55,
     paddingTop: 55 + 20,
     paddingHorizontal: 15,
     zIndex: -1,
-  }
+  },
+  request: {
+    padding: 20,
+    marginBottom: 15,
+  },
+  requestStatus: {
+    marginRight: 20,
+    overflow: 'hidden',
+    height: 90,
+  },
+  requestHeader: {
+    paddingHorizontal: 20,
+    paddingBottom: 15
+  },
 })

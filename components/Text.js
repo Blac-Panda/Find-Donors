@@ -71,22 +71,22 @@ export default class Typography extends Component {
 
 const styles = StyleSheet.create({
     text: {
-        //fontFamily: "Montserrat-Regular
+        fontFamily: "Montserrat-Regular",
         fontSize: theme.sizes.font,
         color: theme.colors.black,
     },
     //variations
     bold: { 
         fontWeight: "bold",
-        //fontFamily: "Montserrat-Bold"
+        fontFamily: "Montserrat-Bold"
     },
     semibold: { 
         fontWeight: "500",
-        //fontFamily: "Montserrat-SemiBold"
+        fontFamily: "Montserrat-SemiBold"
     },
     light: { 
         fontWeight: "200",
-        //fontFamily: "Montserrat-light"
+        fontFamily: "Montserrat-Light"
     },
     //position
     center: { textAlign: "center"},

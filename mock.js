@@ -7,7 +7,7 @@ const requests = [
         gender: "Male",
         distance: 28,
         duration: 12,
-        status: "urgent",
+        status: "URGENT",
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ const requests = [
         gender: "Male",
         distance: 20,
         duration: 16,
-        status: "urgent",
+        status: "URGENT",
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ const requests = [
         gender: "Male",
         distance: 18,
         duration: 22,
-        status: "urgent",
+        status: "URGENT",
     },
     {
         id: 4,
@@ -37,14 +37,14 @@ const requests = [
         gender: "Male",
         distance: 13.2,
         duration: 12,
-        status: "urgent",
+        status: "URGENT",
     },
 ];
 
 const chart = [];
 
 const user = {
-    avatar: ''
+    avatar: require('./aasets/avatar.png'),
 };
 
 export {requests, chart, user}
